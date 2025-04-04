@@ -1,170 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atajan | Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Основные стили и переменные */
-        :root {
-            --primary: #20C20E;
-            --bg: #0f172a;
-            --text: #f8fafc;
-            --card-bg: #1e293b;
-        }
-
-        [data-theme="light"] {
-            --bg: #f8fafc;
-            --text: #0f172a;
-            --card-bg: #e2e8f0;
-        }
-
-        /* Анимации */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes scaleIn {
-            from { transform: scale(0); }
-            to { transform: scale(1); }
-        }
-
-        .animate-fade {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        .animate-scale {
-            animation: scaleIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
-        }
-
-        /* Стили для карты навыков */
-        .skill-chart {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
-            padding: 2rem 0;
-        }
-
-        .skill-item {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            margin: 0 auto;
-        }
-
-        .skill-progress {
-            transform: rotate(-90deg);
-            width: 100%;
-            height: 100%;
-        }
-
-        .skill-progress circle {
-            fill: none;
-            stroke-width: 5;
-            stroke-linecap: round;
-            transition: stroke-dashoffset 1s ease-out;
-        }
-
-        .skill-percent {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        /* Социальные виджеты */
-        .social-floating {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            z-index: 1000;
-        }
-
-        .social-btn {
-            background: var(--primary);
-            color: var(--bg);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: transform 0.3s;
-            box-shadow: 0 4px 15px rgba(32, 194, 14, 0.3);
-        }
-
-        .social-btn:hover {
-            transform: translateY(-3px) scale(1.1);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Atajan H | Software Engineer</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Социальные виджеты -->
-    <div class="social-floating animate-fade">
-        <a href="https://wa.me/905522916654" class="social-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="https://t.me/atajan_h_sh" class="social-btn" target="_blank">
-            <i class="fab fa-telegram-plane"></i>
-        </a>
+  <header class="fade-in">
+    <h1>Hi, I'm <span>Atajan H.</span></h1>
+    <p>Engineer & Software Developer focused on scalable systems and elegant solutions.</p>
+  </header>
+
+  <section id="projects" class="fade-in">
+    <h2>🛠️ My Projects</h2>
+    <div class="project">
+      <h3>E-commerce Platform</h3>
+      <p>Built a full-stack Laravel + Vue.js e-commerce system with real-time order tracking and secure payments.</p>
     </div>
+    <div class="project">
+      <h3>Banking App</h3>
+      <p>Developed core banking services including secure authentication, balance analytics, and client-side transaction tools.</p>
+    </div>
+  </section>
 
-    <!-- Секция навыков -->
-    <section class="section container animate-fade">
-        <h2>Skills Map</h2>
-        <div class="skill-chart">
-            <div class="skill-item">
-                <svg class="skill-progress">
-                    <circle cx="75" cy="75" r="70" stroke="var(--card-bg)"/>
-                    <circle cx="75" cy="75" r="70" stroke="var(--primary)" 
-                            stroke-dasharray="440" 
-                            stroke-dashoffset="440"
-                            data-percent="85"/>
-                </svg>
-                <div class="skill-percent">85%</div>
-                <p class="skill-name">PHP/Laravel</p>
-            </div>
-            <!-- Добавьте другие навыки аналогично -->
-        </div>
-    </section>
+  <footer class="fade-in">
+    <p>© 2025 Atajan H. | <a href="https://github.com/AtajanH" target="_blank">GitHub</a></p>
+  </footer>
 
-    <script>
-        // Анимация прогресс-баров
-        document.querySelectorAll('.skill-progress circle').forEach(circle => {
-            const radius = circle.r.baseVal.value;
-            const circumference = 2 * Math.PI * radius;
-            const percent = circle.dataset.percent;
-            const offset = circumference - (percent / 100 * circumference);
-            
-            circle.style.strokeDasharray = circumference;
-            circle.style.strokeDashoffset = circumference;
-            
-            setTimeout(() => {
-                circle.style.strokeDashoffset = offset;
-            }, 500);
-        });
-
-        // Анимация при скролле
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
-        });
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
